@@ -20,12 +20,36 @@ window.onload = () => {
                 statusDiv.textContent = res.error;
                 localStorage.removeItem('gdrive_connected');
                 return;
+            }
             accessToken = res.access_token;
+            
+            // Cache token locally
+            localStorage.setItem('gdrive_token', accessToken);
+            localStorage.setItem('gdrive_expires_at', Date.now() + (res.expires_in * 1000));
+            localStorage.setItem('gdrive_connected', 'true');
+            
             connectBtn.classList.add('hidden');
             workspace.classList.remove('hidden');
             loadData();
         }
     });
+
+    // Check for valid cached token
+    const cachedToken = localStorage.getItem('gdrive_token');
+    const expiresAt = localStorage.getItem('gdrive_expires_at');
+    
+    if (cachedToken && expiresAt && Date.now() < parseInt(expiresAt)) {
+        accessToken = cachedToken;
+        connectBtn.classList.add('hidden');
+        workspace.classList.remove('hidden');
+        loadData();
+    } else if (localStorage.getItem('gdrive_connected') === 'true') {
+        statusDiv.textContent = 'Restoring session...';
+        // Short delay to ensure Google library has finished fully initializing
+        setTimeout(() => {
+            if (tokenClient) tokenClient.requestAccessToken({ prompt: '' });
+        }, 500);
+    }
 };
 
 connectBtn.onclick = () => tokenClient.requestAccessToken();
