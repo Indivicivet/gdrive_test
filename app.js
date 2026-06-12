@@ -16,7 +16,10 @@ window.onload = () => {
         client_id: CLIENT_ID,
         scope: 'https://www.googleapis.com/auth/drive.file',
         callback: (res) => {
-            if (res.error) return statusDiv.textContent = res.error;
+            if (res.error) {
+                statusDiv.textContent = res.error;
+                localStorage.removeItem('gdrive_connected');
+                return;
             accessToken = res.access_token;
             connectBtn.classList.add('hidden');
             workspace.classList.remove('hidden');
