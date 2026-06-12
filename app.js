@@ -1,4 +1,4 @@
-const CLIENT_ID = 'YOUR_GOOGLE_CLIENT_ID_HERE.apps.googleusercontent.com';
+const CLIENT_ID = "165388205315-k9numnp7g3qavmqi737mmar32hqvephk.apps.googleusercontent.com";
 
 let accessToken = null;
 let tokenClient = null;
@@ -12,10 +12,6 @@ const saveBtn = document.getElementById('saveBtn');
 const statusDiv = document.getElementById('status');
 
 window.onload = () => {
-    if (CLIENT_ID === 'YOUR_GOOGLE_CLIENT_ID_HERE.apps.googleusercontent.com') {
-        statusDiv.textContent = 'Set CLIENT_ID in app.js';
-        return;
-    }
     tokenClient = google.accounts.oauth2.initTokenClient({
         client_id: CLIENT_ID,
         scope: 'https://www.googleapis.com/auth/drive.file',
