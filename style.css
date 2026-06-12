@@ -1,0 +1,30 @@
+body {
+    font-family: sans-serif;
+    text-align: center;
+    margin-top: 50px;
+}
+
+#avatarImg {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: #ccc;
+    cursor: pointer;
+    display: block;
+    margin: 20px auto;
+}
+
+textarea {
+    display: block;
+    margin: 15px auto;
+    width: 300px;
+}
+
+button {
+    padding: 8px 16px;
+    cursor: pointer;
+}
+
+.hidden {
+    display: none !important;
+}

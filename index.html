@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>GDrive Barebones PoC</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <button id="connectBtn">Connect Google Drive</button>
+
+    <div id="workspace" class="hidden">
+        <div>
+            <img id="avatarImg" alt="Click to upload avatar">
+            <input type="file" id="avatarInput" accept="image/*" class="hidden">
+        </div>
+        <textarea id="textBox" placeholder="Write text here..." rows="5"></textarea>
+        <button id="saveBtn">Save Text</button>
+        <div id="status">Ready</div>
+    </div>
+
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script src="app.js"></script>
+</body>
+</html>
